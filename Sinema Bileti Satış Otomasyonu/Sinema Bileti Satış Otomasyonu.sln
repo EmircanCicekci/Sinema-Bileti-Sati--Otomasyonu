@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sinema Bileti Satış Otomasyonu", "Sinema Bileti Satış Otomasyonu.csproj", "{89D3C56D-0A70-406D-9784-56A68DCFFA11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUploadControl", "..\FileUploadControl\FileUploadControl.csproj", "{B3C8C52C-C36E-4D40-AFCF-BE6239224611}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89D3C56D-0A70-406D-9784-56A68DCFFA11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D3C56D-0A70-406D-9784-56A68DCFFA11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D3C56D-0A70-406D-9784-56A68DCFFA11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D3C56D-0A70-406D-9784-56A68DCFFA11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3C8C52C-C36E-4D40-AFCF-BE6239224611}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3C8C52C-C36E-4D40-AFCF-BE6239224611}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3C8C52C-C36E-4D40-AFCF-BE6239224611}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3C8C52C-C36E-4D40-AFCF-BE6239224611}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D630DA43-CFB9-4D6B-BBA4-919449AB4729}
+	EndGlobalSection
+EndGlobal

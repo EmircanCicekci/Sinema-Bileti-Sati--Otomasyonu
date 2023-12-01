@@ -1,0 +1,85 @@
+﻿@model IEnumerable<Sinema_Bileti_Satış_Otomasyonu.Models.Seans>
+
+<body>
+<section id="home" class="main-bilet parallax-section">
+
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <h1>Seans Seçiniz</h1>
+            </div>
+
+        </div>
+    </div>
+    <div class="bilet-al-arkaplan">
+    </div>
+</section>
+
+
+    <div style="background-image: url('~/images/sas.jpg');">
+        <divc class="bilet-al-arkaplan">
+
+
+@foreach (var seans in Model)
+{
+    <div>
+
+                    <button class="seans-buton" onclick="window.location.href='@Url.Action("SeansSec", "Seans", new { seansId = seans.SeansId })'">
+                        Seans: @seans.FilmSeans.ToString("dd/MM/yyyy HH:mm")
+                    </button>
+
+
+                    <!--
+        <button class="seans-buton" onclick="window.location.href='@Url.Action("SeansSec", "Seans", new { seansId = seans.SeansId })'">
+        Seans: @seans.FilmSeans.ToString("dd/MM/yyyy HH:mm")
+        </button>
+        -->
+
+
+        <!--<p>Seans: @seans.FilmSeans.ToString("dd/MM/yyyy HH:mm")</p>
+        <a asp-controller="Seans" asp-action="SeansSec" asp-route-seansId="@seans.SeansId">Seç</a>
+                    -->
+    </div>
+}
+    </divc>
+    </div>
+
+
+
+
+
+
+<style>
+
+    .bilet-al-arkaplan {
+        background-image: url("~/images/sas.jpg"); /* Resim dosyasının yolunu buraya girin */
+        background-size: cover; /* Resmi arkaplan boyutuna sığdırmak için */
+        background-position: center; /* Resmi ortalamak için */
+    }
+
+        .seans-buton {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+            .seans-buton a {
+                display: inline-block;
+                text-decoration: none;
+                padding: 10px 20px;
+                background-color: #f2f2f2;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+</style>
+
+</body>

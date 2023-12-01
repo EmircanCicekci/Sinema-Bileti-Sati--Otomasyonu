@@ -1,0 +1,98 @@
+﻿@model List<Bilet>
+
+@{
+    ViewData["Title"] = "BiletOnay";
+}
+
+<h2 align ="center">Biletinizi Onaylayınız</h2>
+
+<p align="center">Bilet Bilgileriniz:</p>
+
+@foreach (var bilet in Model)
+{
+        <div class="bilet-container">
+            <div class="bilet">
+                <div class="bilet-baslik">
+                    <h3>@bilet.seanskoltuk.seans.filmdetaylar.Film_ad</h3>
+                    <p>Seans: @bilet.seanskoltuk.seans.FilmSeans</p>
+                </div>
+                <div class="bilet-icerik">
+                    <div class="bilet-koltuk">
+                        <p>Koltuk Numarası</p>
+                        <h4>@bilet.seanskoltuk.koltuk.KoltukNumarasi</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+    
+
+<p align ="center">Bilet bilgilerinizi Kontrol Ediniz. Onaylamak İstiyorsanız:</p>
+
+<form align="center" action="@Url.Action("BiletOnayTamamla")" method="post">
+    <!-- Bilet bilgilerini gizli alanlarda gönder -->
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <input type="hidden" name="[@i].SeansKoltukId" value="@Model[i].SeansKoltukId" />
+    }
+    <input type="submit" value="Onayla" />
+</form>
+
+
+
+
+
+<style>
+    .bilet-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    .bilet {
+        width: 300px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+
+    .bilet-baslik {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+        .bilet-baslik h3 {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        .bilet-baslik p {
+            font-size: 14px;
+            margin: 0;
+            color: #888;
+        }
+
+    .bilet-icerik {
+        display: flex;
+        align-items: center;
+    }
+
+    .bilet-koltuk {
+        flex: 1;
+        text-align: center;
+    }
+
+        .bilet-koltuk p {
+            font-size: 14px;
+            margin: 0;
+            color: #888;
+        }
+
+        .bilet-koltuk h4 {
+            font-size: 24px;
+            margin: 0;
+        }
+</style>

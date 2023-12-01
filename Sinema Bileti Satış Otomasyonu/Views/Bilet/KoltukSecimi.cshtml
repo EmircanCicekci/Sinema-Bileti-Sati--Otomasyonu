@@ -1,0 +1,117 @@
+﻿@model List<SeansKoltuk>
+
+<h2 align="center">Koltuk Seçimi</h2>
+
+<form align="center" id="koltukSecimiForm" method="post" action="BiletAl" onsubmit="return kontrolEt(event)">
+    <input type="hidden" id="secilenKoltuklarInput" name="secilenKoltuklar" value="" />
+    @foreach (var satir in Model.Select(sk => sk.koltuk.Satir).Distinct().OrderByDescending(s => s))
+    {
+        <div  class="koltuk-satir">
+            @foreach (var sutun in Model.Where(sk => sk.koltuk.Satir == satir).OrderBy(sk => int.Parse(sk.koltuk.Sutun)).Select(sk => sk.koltuk.Sutun).Distinct())
+            {
+                var koltuk = Model.FirstOrDefault(sk => sk.koltuk.Satir == satir && sk.koltuk.Sutun == sutun);
+                var koltukNumarasi = koltuk != null ? koltuk.koltuk.KoltukNumarasi.ToString() : "";
+                <div id="@koltuk.SeansKoltukID" class="koltuk @(koltuk != null && koltuk.Dolu ? "satilmis" : "")" onclick="koltukSec(@koltuk.SeansKoltukID)">
+                    <span>@(koltuk != null ? koltuk.koltuk.KoltukNumarasi.ToString() : "")</span>
+                    <input type="hidden" name="secilenKoltuklar[]" value="@koltuk.SeansKoltukID" />
+                </div>
+            }
+        </div>
+    }
+
+    <button type="submit" disabled="disabled">Bilet Satın Al</button>
+</form>
+
+<div align="center" id="secilenKoltuklar">
+    <h3>Seçilen Koltuklar:</h3>
+    <p  id="koltukListesi"></p>
+</div>
+
+<script>
+    var secilenKoltuklar = [];
+
+    function kontrolEt(event) {
+        var secilenKoltuklar = document.getElementsByName("secilenKoltuklar[]");
+        if (secilenKoltuklar.length === 0) {
+            alert("Lütfen bir koltuk seçiniz.");
+            event.preventDefault();
+            return false; // Formun gönderilmesini engeller
+        }
+        return true; // Formun gönderilmesine izin verir
+    }
+
+    function koltukSec(SeanskoltukID) 
+    {
+        var koltukElement = document.getElementById(SeanskoltukID);
+
+        // Seçili koltuğu işaretlemek veya seçimi iptal etmek için gerekli işlemleri yapabilirsiniz
+        if (koltukElement.classList.contains("secili")) {
+            koltukElement.classList.remove("secili");
+            secilenKoltuklar = secilenKoltuklar.filter(koltuk => koltuk !== SeanskoltukID);
+        } else {
+            koltukElement.classList.add("secili");
+            secilenKoltuklar.push(SeanskoltukID);
+        }
+
+        // Seçilen koltukları listelemek için gerekli işlemleri yapabilirsiniz
+        var koltukListesi = document.getElementById("koltukListesi");
+        koltukListesi.innerHTML = "";
+        secilenKoltuklar.forEach(koltukID => {
+            var koltukElement = document.getElementById(koltukID);
+            var koltukNumarasi = koltukElement.querySelector("span").innerText;
+            var li = document.createElement("li");
+            li.innerText = koltukNumarasi;
+            koltukListesi.appendChild(li);
+        });
+        var secilenKoltuklarInput = document.getElementById("secilenKoltuklarInput");
+        secilenKoltuklarInput.value = secilenKoltuklar.join(",");
+
+        var koltukSecildi = secilenKoltuklar.length > 0;
+        var form = document.getElementById("koltukSecimiForm");
+        var submitButton = document.querySelector("#koltukSecimiForm button[type='submit']");
+
+        if (koltukSecildi) {
+            submitButton.removeAttribute("disabled");
+        } else {
+            submitButton.setAttribute("disabled", "disabled");
+        }
+    }
+</script>
+
+<style>
+    .koltuklar {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .koltuk-satir {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .koltuk {
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+        border: 1px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .koltuk.secili {
+        background-color: green;
+        color: white;
+    }
+
+    .satilmis {
+        background-color: red;
+        pointer-events: none;
+    }
+</style>
+
+

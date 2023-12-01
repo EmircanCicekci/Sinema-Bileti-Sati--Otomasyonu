@@ -1,0 +1,34 @@
+﻿@model Sinema_Bileti_Satış_Otomasyonu.Models.Seans
+
+@{
+    ViewData["Title"] = "SeansEkle";
+}
+
+<h1>SeansEkle</h1>
+
+<h4>Seans</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SeansEkle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="filmdetaylar.Film_ad" class="control-label">Filmin Adı</label>
+                @Html.DisplayFor(model=>model.filmdetaylar.Film_ad)
+            </div>
+            <div class="form-group">
+                <label asp-for="FilmSeans" class="control-label"></label>
+                <input asp-for="FilmSeans" class="form-control" />
+                <span asp-validation-for="FilmSeans" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

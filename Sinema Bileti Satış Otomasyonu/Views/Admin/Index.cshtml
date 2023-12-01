@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Sinema_Bileti_Satış_Otomasyonu.Models.FilmDetaylar>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Admin Panel</h1>
+
+<p>
+    <a asp-action="Create">Film Ekle</a>
+    <a asp-action="KoltukEkle">Koltukları Ekle</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Film_ad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Film_aciklamasi)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.FilmResim)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Film_ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Film_aciklamasi)
+            </td>
+            
+
+
+            <td>
+                <img src="@item.FilmResim" width="100"  height="100" asp-append-version="true" />
+            </td>
+            <td>
+                <a asp-action="SeansEkle" asp-route-id="@item.Id">SeansEkle</a> 
+            </td>
+            <td>
+                <a asp-action="DeleteFilm" asp-route-id="@item.Id">Film sil</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

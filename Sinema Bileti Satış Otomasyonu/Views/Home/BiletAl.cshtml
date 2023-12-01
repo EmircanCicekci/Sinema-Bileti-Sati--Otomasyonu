@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Sinema_Bileti_Satış_Otomasyonu.Models.FilmDetaylar>
+<head>
+    <meta name="author" content="www.twitter.com/cheeriottis">
+    <link rel="stylesheet" href="~/css/style.css">
+   
+</head>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+<section id="home" class="main-bilet parallax-section">
+    
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <h1>Vizyondaki Filmler</h1>
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+<table class="table">
+    
+    <thead>
+        <tr>
+            <th>
+                <span style="font-size: 30px;">Film Adı</span>
+                
+            </th>
+            <th>
+                <span style="font-size: 30px;">Film Türü</span>
+                
+            </th>
+            
+            
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    <span style="font-size: 20px;"  >@Html.DisplayFor(modelItem => item.Film_ad)</span>
+            </td>
+            <td>
+                    <span style ="font-size: 20px;" > @Html.DisplayFor(modelItem => item.Film_aciklamasi)</span>
+            </td>
+                
+
+
+            <td>
+                <img src="@item.FilmResim" width="150"  height="150" asp-append-version="true" />
+            </td>
+            <td>
+                    
+                    <a class="action-button shadow animate green" asp-controller="Seans" asp-action="Index" asp-route-id="@item.Id">Satın Al</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<style>
+
+    .animate {
+        transition: all 0.1s;
+        -webkit-transition: all 0.1s;
+    }
+
+    .action-button {
+        position: relative;
+        padding: 10px 40px;
+        margin: 0px 10px 10px 0px;
+        float: left;
+        border-radius: 10px;
+        font-family: 'Pacifico', cursive;
+        font-size: 25px;
+        color: #FFF;
+        text-decoration: none;
+    }
+
+
+    .green {
+        background-color: #82BF56;
+        border-bottom: 5px solid #669644;
+        text-shadow: 0px -2px #669644;
+    }
+
+
+    .action-button:active {
+        transform: translate(0px,5px);
+        -webkit-transform: translate(0px,5px);
+        border-bottom: 1px solid;
+    }
+</style>
